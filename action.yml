@@ -1,0 +1,30 @@
+name: 'Run Swift Format'
+description: 'Runs a script to ensure your Swift code adheres to a consistent coding style'
+
+inputs:
+  swift-format-version:
+    description: 'Swift Format tag version number'
+    required: false
+    default: "510.1.0"
+
+runs:
+  using: 'composite'
+  steps:
+    - name: build swift-format
+      shell: bash
+      run: |
+        git clone https://github.com/apple/swift-format.git
+        cd swift-format
+        git checkout "tags/${{inputs.swift-format-version}}"
+        swift build -c release
+        install .build/release/swift-format /usr/local/bin/swift-format
+
+    - name: run script
+      shell: bash
+      run: |
+        chmod -R oug+x ${{github.action_path}}/run-swift-format.sh
+        ${{github.action_path}}/run-swift-format.sh
+
+branding:
+  icon: 'server'
+  color: 'green'
