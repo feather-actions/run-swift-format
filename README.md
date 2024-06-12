@@ -9,7 +9,7 @@ Include the action in the workflow (make sure that a Swift 5.6+ toolchain is on 
 Add a .swift-format file to the repository to configure the lint action. If no file is added, the default configuration will be used.
 
 ```yaml
-- uses: feather-actions/run-swift-format@0.0.1
+- uses: feather-actions/run-swift-format@0.0.2
 ```
 Full example:
 
@@ -27,7 +27,7 @@ jobs:
           fetch-depth: 1
   
       - name: Run Swift Format
-        uses: feather-actions/run-swift-format@0.0.1
+        uses: feather-actions/run-swift-format@0.0.2
 ```
 
 ## Inputs
